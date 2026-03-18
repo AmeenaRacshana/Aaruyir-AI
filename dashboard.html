@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaruyir AI | Dashboard</title>
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body class="dashboard-body">
+    <div class="app-container dashboard-layout">
+        <aside class="sidebar dashboard-sidebar">
+            <div class="logo-container">
+                <h2>Aaruyir AI</h2>
+                <p>Your Mental Health Insights</p>
+            </div>
+
+            <a href="/" class="nav-link chat-link">
+                <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span>Back to Chat</span>
+            </a>
+
+            <div class="dashboard-controls">
+                <!-- Add any future controls here like date pickers -->
+            </div>
+
+            <div class="emergency-panel" id="emergency-panel" style="display: none;">
+                <h4>Emergency Alert</h4>
+                <p>High distress detected recently. Please reach out for support.</p>
+                <button class="sos-btn" onclick="showSOSModal()">Trigger SOS</button>
+            </div>
+        </aside>
+
+        <main class="dashboard-main">
+            <div class="dashboard-header">
+                <h2>Daily Overview</h2>
+                <p id="current-date">Today's Summary</p>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="dashboard-card status-overview">
+                    <h3>Status</h3>
+                    <div class="status-card" id="status-card">
+                        <div class="loader"></div>
+                        <p class="status-text">Analyzing your interactions...</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-card chart-section">
+                    <h3>Mood Trend</h3>
+                    <div class="chart-container large-chart">
+                        <canvas id="moodChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="dashboard-card chart-section">
+                    <h3>7-Day History</h3>
+                    <div class="chart-container large-chart">
+                        <canvas id="historyChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="sos-modal-overlay" id="sosModalOverlay">
+        <div class="sos-modal">
+            <div class="sos-icon">
+                <svg viewBox="0 0 24 24" width="40" height="40" stroke="currentColor" stroke-width="2" fill="none"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
+                    </path>
+                    <line x1="12" y1="9" x2="12" y2="13"></line>
+                    <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+            </div>
+            <h2>Emergency Protocol</h2>
+            <p>You are about to trigger an SOS alert. This will immediately notify your trusted contacts that you need
+                serious help right now.</p>
+            <div class="btn-group">
+                <button class="btn-cancel" onclick="closeSOSModal()">Cancel</button>
+                <button class="btn-confirm" onclick="confirmSOS()">Trigger SOS Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+    <script>
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+
+</html>
